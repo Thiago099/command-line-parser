@@ -1,0 +1,57 @@
+<textarea id="input" class="field"></textarea>
+<table id="output" class="out"></table>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .field {
+        width: 100%;
+        height: 20%;
+        border: none;
+        font-size: 1.5em;
+        border-bottom: 1px dashed black;
+        outline: none;
+    }
+    .out{
+        width: 100%;
+        height: 80%;
+        border: none;
+        font-size: 1.5em;
+        outline: none;
+    }
+    th{
+        font-size: 1.5em;
+        padding: 10px;
+    }
+    td  {
+        border: 1px dashed black;
+        padding: 0.5em;
+    }
+    table{
+        border-collapse: collapse;
+    }
+    tr:nth-child(even){
+        background-color: #f2f2f2;
+    }
+
+</style>
+<script>
+    input = document.getElementById("input");
+    output = document.getElementById("output");
+
+    input.addEventListener("keyup", function(event) {
+        event.preventDefault();
+            // get all groups from regex pattern
+            outputStr= "<tr><th colspan=2>"+input.value.match(/.*?\s/)[0]+"</th></tr>";
+            var regex = /--(.*?)\s+(.*?)($|\s)+/gm;
+
+            var match = regex.exec(input.value);
+            while (match != null) {
+                outputStr += `<tr><td style="color:blue"><b>${match[1].replaceAll("-"," ")}</b></td><td style="color:#db6439">${match[2]}</td></tr>`;
+                match = regex.exec(input.value);
+            }
+            output.innerHTML = outputStr;
+    });
+</script>
