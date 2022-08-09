@@ -44,7 +44,7 @@
     input.addEventListener("keyup", function(event) {
         event.preventDefault();
             // get all groups from regex pattern
-            outputStr= "<tr><th colspan=2>"+input.value.match(/.*?\s/)[0]+"</th></tr>";
+            outputStr= "<tr><th colspan=2>"+input.value.match(/\s*(.*?)\s/)[1]+"</th></tr>";
             var regex = /--(.*?)\s+(.*?)($|\s)+/gm;
 
             var match = regex.exec(input.value);
