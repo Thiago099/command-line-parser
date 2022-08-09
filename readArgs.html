@@ -48,9 +48,20 @@
             var regex = /--(.*?)\s+(.*?)($|\s)+/gm;
 
             var match = regex.exec(input.value);
-            while (match != null) {
-                outputStr += `<tr><td style="color:blue"><b>${match[1].replaceAll("-"," ")}</b></td><td style="color:#db6439">${match[2]}</td></tr>`;
-                match = regex.exec(input.value);
+            if(match == null)
+            {
+                var split = input.value.split(" ").map(x => x.trim()).filter(x => x != "");
+                for(var i = 0; i < split.length; i++)
+                {
+                    outputStr += "<tr><td style=\"color:#db6439\">"+split[i]+"</td></tr>";
+                }
+            }
+            else
+            {
+                while (match != null) {
+                    outputStr += `<tr><td style="color:blue"><b>${match[1].replaceAll("-"," ")}</b></td><td style="color:#db6439">${match[2]}</td></tr>`;
+                    match = regex.exec(input.value);
+                }
             }
             output.innerHTML = outputStr;
     });
