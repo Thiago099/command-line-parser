@@ -50,7 +50,7 @@
             var match = regex.exec(input.value);
             if(match == null)
             {
-                var split = input.value.split(" ").map(x => x.trim()).filter(x => x != "");
+                var split = input.value.split(" ").map(x => x.trim()).filter(x => x != "").slice(1);
                 for(var i = 0; i < split.length; i++)
                 {
                     outputStr += "<tr><td style=\"color:#db6439\">"+split[i]+"</td></tr>";
